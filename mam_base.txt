@@ -1,0 +1,126 @@
+# MAM - Mobile Addon Maker - Base de Conhecimento
+
+## Estrutura de Pastas do Addon
+```
+addon_name/
+  behavior_pack/
+    manifest.json
+    entities/
+    items/
+    blocks/
+    scripts/
+  resource_pack/
+    manifest.json
+    textures/
+    models/
+    sounds/
+```
+
+## manifest.json (Behavior Pack)
+```json
+{
+  "format_version": 2,
+  "header": {
+    "name": "Nome do Addon",
+    "description": "Descrição",
+    "uuid": "GERAR_UUID_UNICO",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "GERAR_UUID_UNICO_2",
+      "version": [1, 0, 0]
+    }
+  ]
+}
+```
+
+## Item Customizado (exemplo)
+```json
+{
+  "format_version": "1.20.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "myaddon:my_item",
+      "category": "Items"
+    },
+    "components": {
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "texture": "my_item"
+      }
+    }
+  }
+}
+```
+
+## Entidade Customizada (estrutura)
+```json
+{
+  "format_version": "1.18.20",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "myaddon:my_entity",
+      "is_spawnable": true,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:health": { "value": 20, "max": 20 },
+      "minecraft:movement": { "value": 0.25 },
+      "minecraft:physics": {}
+    }
+  }
+}
+```
+
+## Bloco Customizado
+```json
+{
+  "format_version": "1.20.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "myaddon:my_block"
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": { "texture": "my_block", "render_method": "opaque" }
+      },
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 1.5 }
+    }
+  }
+}
+```
+
+## Receita de Crafting
+```json
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "myaddon:my_recipe" },
+    "tags": ["crafting_table"],
+    "pattern": ["XXX", "X X", "XXX"],
+    "key": { "X": { "item": "minecraft:iron_ingot" } },
+    "result": { "item": "myaddon:my_item" }
+  }
+}
+```
+
+## Componentes Úteis de Entidade
+- minecraft:follow_range: alcance de perseguição
+- minecraft:attack: dano de ataque
+- minecraft:loot: tabela de loot ao morrer
+- minecraft:tameable: tornar domável
+- minecraft:rideable: tornar montável
+- minecraft:behavior.nearest_attackable_target: atacar alvo
+- minecraft:behavior.move_to_land: mover para terra
+- minecraft:behavior.float: flutuar na água
+
+## Dicas MAM Mobile
+- Use UUID v4 para cada pack (gere em uuid.rocks ou similar)
+- Salve arquivos como .json com encoding UTF-8
+- Teste em mundo criativo primeiro
+- Importe o addon em Configurações > Recursos/Comportamento
+- Erros aparecem no log de conteúdo ao entrar no mundo
